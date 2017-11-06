@@ -19,9 +19,10 @@
         </activity>
 
 
-    <activity android:name=".PlaySoundActivity">
+    <activity android:name=".PlayMediaActivity">
+
     </activity>
-        <activity android:name=".PlayVideoActivity"/>
+
 
     </application>
 

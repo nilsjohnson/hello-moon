@@ -25,6 +25,10 @@ public class PlaySoundFragment extends Fragment
 {
     public final static String TAG = "PlaySoundFragment";
 
+    private final static String ARG_SOUND_RES_ID = "sound_resource_id";
+
+    private int soundResId;
+
     // to fire action that plays sound
     Button btnPlaySound;
 
@@ -34,7 +38,7 @@ public class PlaySoundFragment extends Fragment
         // inflate(layout resouce id, view's parent, tells layout inflater whether to add the inflated view to the views parent or not
         View view = inflater.inflate(R.layout.fragment_play_sound, container, false);
 
-
+        soundResId = (int) getArguments().getSerializable(ARG_SOUND_RES_ID);
 
         btnPlaySound = (Button) view.findViewById(R.id.btn_play_sound);
         btnPlaySound.setOnClickListener(new View.OnClickListener(){
@@ -51,7 +55,16 @@ public class PlaySoundFragment extends Fragment
 
     private void playSound()
     {
-        MediaPlayer sound = MediaPlayer.create(getActivity(), R.raw.cat_meow);
+        MediaPlayer sound = MediaPlayer.create(getActivity(), soundResId);
         sound.start();
+    }
+
+    public static PlaySoundFragment newInstance(int soundResId)
+    {
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_SOUND_RES_ID, soundResId);
+        PlaySoundFragment frag = new PlaySoundFragment();
+        frag.setArguments(args);
+        return frag;
     }
 }

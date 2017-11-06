@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Hello There, Moon!</string>
     <string name="title_dog">Dog</string>
-    <string name="btn_bark">Bark!</string>
-    <string name="btn_play">Play</string>
+    <string name="btn_play_bark_sound">Woof!</string>
+    <string name="btn_play_Video">Play Video</string>
+    <string name="btn_play_meow_sound">Meow!</string>
+
+    // for media player
+    <string name="btn_media_play">Play</string>
 </resources>

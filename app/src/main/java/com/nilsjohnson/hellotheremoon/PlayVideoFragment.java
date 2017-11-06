@@ -28,7 +28,15 @@ public class PlayVideoFragment extends Fragment
 
     private int videoId;
 
+    private static final String ARG_VIDEO_RES_ID = "video_res_id";
+    private int videoResId;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        videoResId = (int) getArguments().getSerializable(ARG_VIDEO_RES_ID);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -50,7 +58,7 @@ public class PlayVideoFragment extends Fragment
             public void onClick(View v)
             {
                 Log.d(TAG, "Play Video Clicked");
-                String path = "android.resource://" + getActivity().getPackageName() + "/" + R.raw.cat_video;
+                String path = "android.resource://" + getActivity().getPackageName() + "/" + videoResId;
                 Uri uri = Uri.parse(path);
                 videoView.setVideoURI(uri);
                 videoView.start();
@@ -58,6 +66,22 @@ public class PlayVideoFragment extends Fragment
         });
 
         return view;
+    }
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+
+    }
+
+    public static PlayVideoFragment newInstance(int videoResId)
+    {
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_VIDEO_RES_ID, videoResId);
+        PlayVideoFragment frag = new PlayVideoFragment();
+        frag.setArguments(args);
+        return frag;
     }
 }
 

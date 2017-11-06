@@ -22,11 +22,8 @@ public class PlayVideoFragment extends Fragment
 {
     public final static String TAG = "PlayVideoFragment";
 
-    // to fire action that plays sound
     private Button btnPlayVideo;
     private VideoView videoView;
-
-    private int videoId;
 
     private static final String ARG_VIDEO_RES_ID = "video_res_id";
     private int videoResId;
@@ -42,17 +39,10 @@ public class PlayVideoFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         Log.d(TAG, "Creating 'PlayVideoFragment View");
-        // inflate(layout resouce id, view's parent, tells layout inflater whether to add the inflated view to the views parent or not
         View view = inflater.inflate(R.layout.fragment_play_video, container, false);
-
         videoView = (VideoView) view.findViewById(R.id.videoView);
 
-
-        MediaPlayer video = MediaPlayer.create(getActivity(), R.raw.cat_video);
-        video.start();
-
         btnPlayVideo = (Button) view.findViewById(R.id.btn_play_video);
-
         btnPlayVideo.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v)
@@ -72,6 +62,7 @@ public class PlayVideoFragment extends Fragment
     public void onPause()
     {
         super.onPause();
+        videoView.pause();
 
     }
 
